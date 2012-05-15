@@ -17,9 +17,8 @@ Cells.prototype.countAlive=function(_x,_y){
   for(var j=-1;j<2;j++){
    if(this.cells[this.flip][_y+j][_x+i]==0)
     continue;
-   if(i ==0 && j==0)
+   if(i==0 && j==0)
     continue;
-
    result++;
   }
  }
@@ -36,28 +35,48 @@ Cells.prototype.nextGeneration=function(_x,_y){
   return 0;
  }
  //生存
- if(alive==1 && (count==2 || count==3)){
+ if(alive!=0 && (count==2 || count==3)){
   return 1;
  }
   //過疎
- if(alive==1 && count<=1){
+ if(alive!=0 && count<=1){
   return 2;
  }
  //過密
-  if(alive==1 && count>=4){
+ if(alive!=0 && count>=4){
   return 3;
  }
  
  return -1;
 }
-
+Cells.prototype.getBirthType=function(_x,_y){
+ var result=0;
+ var maxCount=0;
+ var cellTypeCount = [0,0,0,0,0,0,0,0,0];
+ for(var i=-1;i<2;i++){
+  for(var j=-1;j<2;j++){
+   if(this.cells[this.flip][_y+j][_x+i]==0)
+    continue;
+   if(i==0 && j==0)
+    continue;
+   cellTypeCount[this.cells[this.flip][_y+j][_x+i]]++;
+  }
+ }
+ for(var i=1;i<cellTypeCount.length;i++){
+  if(cellTypeCount[i] < maxCount)
+   continue;
+  maxCount=cellTypeCount[i];
+  result=i;
+ }
+ return result;
+}
 Cells.prototype.next=function(){
  var next=1-this.flip;
  for(var x=1;x<this.cells[this.flip].length-1;x++){
    for(var y=1;y<this.cells[this.flip].length-1;y++){
     var nextStatus = this.nextGeneration(x,y);
     if(nextStatus == 0 || nextStatus == 1)
-     this.cells[next][y][x]=1;
+     this.cells[next][y][x]=this.getBirthType(x,y);
     else 
      this.cells[next][y][x]=0;
   }

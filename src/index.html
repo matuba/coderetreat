@@ -6,7 +6,13 @@
   <script id="shader-fs" type="x-shader/x-fragment"></script>
 </head>
 <body onload="start()">
- <input type="button" name="run" value="run" onclick="switchRun();if(this.value=='run')this.value='stop'; else this.value='run'"><br>
+ <input type="button" name="run" value="run" onclick="switchRun();if(this.value=='run')this.value='stop'; else this.value='run'">
+ <br>
+ <input type="radio"  name="lang" value="1" checked onclick="setLangFlag(1)">perl
+ <input type="radio"  name="lang" value="2" onclick="setLangFlag(2)">php
+ <input type="radio"  name="lang" value="3" onclick="setLangFlag(3)">ruby
+ *クリックでセルを塗りつぶします<br>
+ <br>
  <canvas id="screen" width="512" height="512">
   Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
  </canvas><br>

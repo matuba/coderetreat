@@ -105,7 +105,35 @@ describe('Test', function()
   expect(1).toEqual(cell.isAlive(2,2));
  });
 
-  it('大きいデータテスト', function()
+ it('誕生種類テスト', function()
+ {
+  var cell = new Cells([
+                        [0,0,0,0,0],
+                        [0,1,1,3,0],
+                        [0,1,0,2,0],
+                        [0,3,2,1,0],
+                        [0,0,0,0,0]]);
+  expect(1).toEqual(cell.getBirthType(2,2));
+
+  cell = new Cells([
+                        [0,0,0,0,0],
+                        [0,1,1,3,0],
+                        [0,1,0,2,0],
+                        [0,2,2,2,0],
+                        [0,0,0,0,0]]);
+  expect(2).toEqual(cell.getBirthType(2,2));
+  cell = new Cells([
+                        [0,0,0,0,0],
+                        [0,1,1,3,0],
+                        [0,1,0,2,0],
+                        [0,3,3,3,0],
+                        [0,0,0,0,0]]);
+  expect(3).toEqual(cell.getBirthType(2,2));
+ });
+
+
+
+ it('大きいデータテスト', function()
  {
  var cell = new Cells([
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -145,6 +173,6 @@ describe('Test', function()
                         ]);
 
   cell.next();
-  expect(1).toEqual(cell.cells[1][2][2]);
+  expect(0).toEqual(cell.cells[1][2][2]);
  });
 });
