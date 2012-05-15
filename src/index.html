@@ -1,13 +1,12 @@
 <html>
 <head>
   <title>Life Game</title>
+  <script type="text/javascript" src="Cells.js"></script>
   <script type="text/javascript" src="CoderTreat.js"></script>
-    <script id="shader-fs" type="x-shader/x-fragment">
-    </script>
- 
-
+  <script id="shader-fs" type="x-shader/x-fragment"></script>
 </head>
 <body onload="start()">
+ <input type="button" name="run" value="run" onclick="switchRun();if(this.value=='run')this.value='stop'; else this.value='run'"><br>
  <canvas id="screen" width="512" height="512">
   Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
  </canvas><br>
